@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="box">
-        <p>me da um dinheiro dona Angela?</p>
+        <p>C*zinho hoje?</p>
         <div class="buttons-container">
             <a href="https://www.example.com" class="button">Sim</a>
             <button id="no" class="button">Não</button>
@@ -56,14 +56,29 @@
     <script>
         window.addEventListener('DOMContentLoaded', function() {
             let button = document.getElementById('no');
-            let height = window.innerHeight - 50;
-            let width = window.innerWidth - 50;
+            let height = window.innerHeight - button.offsetHeight;
+            let width = window.innerWidth - button.offsetWidth;
+
+            function moveButton(event) {
+                button.style.position = "absolute";
+                button.style.top = event.touches[0].clientY - button.offsetHeight / 2 + "px";
+                button.style.left = event.touches[0].clientX - button.offsetWidth / 2 + "px";
+            }
 
             button.addEventListener('touchstart', function(event) {
-                event.preventDefault();
-                button.style.position = "absolute";
-                button.style.top = Math.random() * height + "px";
-                button.style.left = Math.random() * width + "px";
+                event.stopPropagation();
+            });
+
+            document.addEventListener('touchstart', function(event) {
+                if (!button.contains(event.target)) {
+                    moveButton(event);
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!button.contains(event.target)) {
+                    moveButton(event);
+                }
             });
         });
     </script>
