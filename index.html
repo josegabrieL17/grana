@@ -46,7 +46,7 @@
 </head>
 <body>
     <div class="box">
-        <p>me dê um dinheiro dona Angela</p>
+        <p>me da um dinheiro dona Angela?</p>
         <div class="buttons-container">
             <a href="https://www.example.com" class="button">Sim</a>
             <button id="no" class="button">Não</button>
@@ -60,7 +60,7 @@
             let width = window.innerWidth - button.offsetWidth;
 
             function moveButton(event) {
-                button.style.position = "absolute";
+                button.style.position = "fixed";
                 button.style.top = event.touches[0].clientY - button.offsetHeight / 2 + "px";
                 button.style.left = event.touches[0].clientX - button.offsetWidth / 2 + "px";
             }
