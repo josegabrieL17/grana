@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .box {
+            font-size: 20px;
+            color: white;
+            height: 250px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 10px;
+            background: #191919;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .button {
+            height: 30px;
+            width: 80px;
+            background: white;
+            border-radius: 5px;
+            color: blue;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>me da um dinheiro dona Angela?</p>
+        <div class="buttons-container">
+            <a href="https://www.example.com" class="button">Sim</a>
+            <button id="no" class="button">Não</button>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            let button = document.getElementById('no');
+            let height = window.innerHeight - 50;
+            let width = window.innerWidth - 50;
+
+            button.addEventListener('touchstart', function(event) {
+                event.preventDefault();
+                button.style.position = "absolute";
+                button.style.top = Math.random() * height + "px";
+                button.style.left = Math.random() * width + "px";
+            });
+        });
+    </script>
+</body>
+</html>
