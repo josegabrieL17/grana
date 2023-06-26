@@ -41,12 +41,13 @@
             justify-content: center;
             align-items: center;
             text-decoration: none;
+            position: absolute;
         }
     </style>
 </head>
 <body>
     <div class="box">
-        <p>me da um dinheiro dona Angela?</p>
+        <p>me da um dinehiro dona Angela?</p>
         <div class="buttons-container">
             <a href="https://www.example.com" class="button">Sim</a>
             <button id="no" class="button">Não</button>
@@ -56,29 +57,20 @@
     <script>
         window.addEventListener('DOMContentLoaded', function() {
             let button = document.getElementById('no');
-            let height = window.innerHeight - button.offsetHeight;
-            let width = window.innerWidth - button.offsetWidth;
+            let box = document.querySelector('.box');
 
-            function moveButton(event) {
-                button.style.position = "fixed";
-                button.style.top = event.touches[0].clientY - button.offsetHeight / 2 + "px";
-                button.style.left = event.touches[0].clientX - button.offsetWidth / 2 + "px";
+            function moveButton() {
+                let maxWidth = box.offsetWidth - button.offsetWidth;
+                let maxHeight = box.offsetHeight - button.offsetHeight;
+                let randomX = Math.floor(Math.random() * maxWidth);
+                let randomY = Math.floor(Math.random() * maxHeight);
+
+                button.style.left = randomX + "px";
+                button.style.top = randomY + "px";
             }
 
-            button.addEventListener('touchstart', function(event) {
-                event.stopPropagation();
-            });
-
-            document.addEventListener('touchstart', function(event) {
-                if (!button.contains(event.target)) {
-                    moveButton(event);
-                }
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!button.contains(event.target)) {
-                    moveButton(event);
-                }
+            button.addEventListener('click', function(event) {
+                moveButton();
             });
         });
     </script>
